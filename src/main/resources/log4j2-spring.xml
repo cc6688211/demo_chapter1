@@ -21,10 +21,10 @@
 			fileName="d:///logs/info.log"
 			filePattern="d:///logs/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log">
 			<!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
-			<ThresholdFilter level="warn" onMatch="DENY"
-				onMismatch="NEUTRAL" />
 			<ThresholdFilter level="info" onMatch="ACCEPT"
 				onMismatch="DENY" />
+			<ThresholdFilter level="warn" onMatch="DENY"
+				onMismatch="NEUTRAL" />
 			<PatternLayout
 				pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n" />
 			<Policies>
@@ -35,10 +35,10 @@
 		<RollingFile name="RollingFileWarn"
 			fileName="d:///logs/warn.log"
 			filePattern="d:///logs/$${date:yyyy-MM}/warn-%d{yyyy-MM-dd}-%i.log">
-			<ThresholdFilter level="error" onMatch="DENY"
-				onMismatch="NEUTRAL" />
 			<ThresholdFilter level="warn" onMatch="ACCEPT"
 				onMismatch="DENY" />
+			<ThresholdFilter level="error" onMatch="DENY"
+				onMismatch="NEUTRAL" />
 			<PatternLayout
 				pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n" />
 			<Policies>
@@ -66,6 +66,8 @@
 		<!--过滤掉spring和mybatis的一些无用的DEBUG信息 -->
 		<logger name="org.springframework" level="INFO"></logger>
 		<logger name="org.mybatis" level="INFO"></logger>
+		<!-- 可以使用此配置统一定义包下面需要打印的日志级别 -->
+		<!-- <logger name="com.example" level="INFO"></logger> -->
 		<root level="all">
 			<appender-ref ref="Console" />
 			<appender-ref ref="RollingFileInfo" />
